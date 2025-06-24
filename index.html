@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ministério de Consolidação | Igreja Metodista Central de Cabo Frio</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <div class="flex flex-col items-center justify-center min-h-screen p-4 sm:p-6 lg:p-8">
+        <div class="w-full max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-8 md:p-12 text-center">
+
+            <!-- Cabeçalho -->
+            <header class="mb-8">
+                <h1 class="text-3xl sm:text-4xl font-bold" style="color: #eab308; text-shadow: 1px 1px 2px rgba(0,0,0,0.1);">
+                    Ministério de Consolidação
+                </h1>
+                <p class="mt-2 text-lg sm:text-xl text-gray-600">
+                    Igreja Metodista Central de Cabo Frio
+                </p>
+            </header>
+
+            <!-- Descrição do Ministério -->
+            <section class="mb-10">
+                <p class="text-base sm:text-lg leading-relaxed text-gray-700">
+                    Seja bem-vindo! Este é o ministério de acolhimento aos visitantes e novos membros, onde as pessoas recebem informações, acompanhamento e são encaminhadas para as atividades da nossa igreja.
+                </p>
+            </section>
+
+            <!-- Seção de Links e Ações -->
+            <section class="flex flex-col items-center gap-6">
+                
+                <!-- Botão para Formulário de Novos Membros (Roxo) -->
+                <a href="https://forms.gle/MrJfbeGFDQz1A6pQ8" target="_blank" rel="noopener noreferrer" class="w-full max-w-sm flex items-center justify-center gap-3 px-6 py-4 text-lg font-semibold text-white bg-purple-700 rounded-xl shadow-md hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 transition-transform transform hover:scale-105">
+                    
+                    <span>Formulário de Novos Membros</span>
+                </a>
+
+                <!-- Links Adicionais -->
+                <div class="w-full max-w-sm grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                    
+                    <!-- Link para WhatsApp (Verde) -->
+                    <a href="https://whatsapp.com/channel/0029VbAdBXi3GJOs8teIaw2U" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 px-4 py-3 font-semibold text-white bg-green-500 rounded-xl shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 transition-all">
+                        
+                        <span>Notícias no WhatsApp</span>
+                    </a>
+
+                    <!-- Link para YouTube (Vermelho) -->
+                    <a href="https://youtube.com/@metodistacentralcabofrio?si=6ic5uJChhTRrcV4r" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 px-4 py-3 font-semibold text-white bg-red-600 rounded-xl shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400 transition-all">
+                        
+                        <span>Canal no YouTube</span>
+                    </a>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Rodapé -->
+        <footer class="mt-8 text-center">
+            <p class="text-sm text-gray-500">&copy; <span id="year"></span> Igreja Metodista Central de Cabo Frio. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Atualiza o ano no rodapé automaticamente
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
+
