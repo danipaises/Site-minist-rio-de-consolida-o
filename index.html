@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ministério de Consolidação | Igreja Metodista Central de Cabo Frio</title>
+    <title>Ministério de Consolidação da Igreja Metodista Central de Cabo Frio</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -20,6 +20,54 @@
             font-family: 'Inter', sans-serif;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+        }
+        /* Estilos para o Modal (Pop-up) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: #1f2937; /* bg-gray-800 */
+            color: #d1d5db; /* text-gray-300 */
+            padding: 2rem;
+            border-radius: 1rem;
+            width: 90%;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.9);
+            transition: transform 0.3s;
+        }
+        .modal-overlay.show .modal-content {
+            transform: scale(1);
+        }
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            line-height: 1;
+            cursor: pointer;
+            color: #9ca3af; /* text-gray-400 */
+        }
+        .modal-close:hover {
+            color: #eab308;
         }
     </style>
 </head>
@@ -36,7 +84,17 @@
                 onerror="this.style.display='none'"
             >
 
-            <div class="p-8 md:p-12">
+            <!-- Logo da Igreja -->
+            <div class="flex justify-center -mt-12">
+                <img 
+                    src="https://i.postimg.cc/jS65cFvZ/channels4-profile.jpg" 
+                    alt="Logo da Igreja Metodista Central de Cabo Frio"
+                    class="w-32 h-32 rounded-full object-cover border-4 border-gray-900 shadow-lg"
+                    onerror="this.onerror=null; this.src='https://placehold.co/128x128/eab308/000000?text=Logo';"
+                >
+            </div>
+
+            <div class="p-8 md:p-12 pt-6">
                 <!-- Cabeçalho com o Título -->
                 <header class="mb-8">
                     <h1 class="text-3xl sm:text-4xl font-bold" style="color: #eab308; text-shadow: 1px 1px 3px rgba(0,0,0,0.5);">
@@ -51,44 +109,204 @@
                     </p>
                 </section>
 
+                <!-- Seção de Horários -->
+                <section class="mb-10 text-left bg-gray-800 p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold text-yellow-500 mb-6 text-center">Nossos Horários</h2>
+                    <div class="space-y-4">
+                        <div>
+                            <h3 class="font-semibold text-lg text-white">Domingo</h3>
+                            <p class="text-gray-400">09:00 - Culto de Louvor e Adoração</p>
+                            <p class="text-gray-400">10:15 - Escola Bíblica Dominical</p>
+                            <p class="text-gray-400">19:00 - Culto de Louvor e Adoração</p>
+                        </div>
+                        <div class="border-t border-gray-700 my-4"></div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-white">Segunda-feira</h3>
+                            <p class="text-gray-400">15:00 - Culto da Melhor Idade <br><b class="text-gray-300">Somente a primeira segunda de cada mês</b></p>
+                        </div>
+                        <div class="border-t border-gray-700 my-4"></div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-white">Terça-feira</h3>
+                            <p class="text-gray-400">08:00 - Desperta Débora</p>
+                            <p class="text-gray-400">20:00 - Célula</p>
+                        </div>
+                        <div class="border-t border-gray-700 my-4"></div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-white">Quarta-feira</h3>
+                            <p class="text-gray-400">15:00 - Tarde com Cristo</p>
+                            <p class="text-gray-400">20:00 - Célula</p>
+                        </div>
+                        <div class="border-t border-gray-700 my-4"></div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-white">Quinta-feira</h3>
+                            <p class="text-gray-400">08:00 - Consagração</p>
+                            <p class="text-gray-400">20:00 - Culto de Louvor e Adoração</p>
+                        </div>
+                        <div class="border-t border-gray-700 my-4"></div>
+                        <div>
+                            <h3 class="font-semibold text-lg text-white">Sábado</h3>
+                            <p class="text-gray-400">08:30 - Consagra Mulher <br><b class="text-gray-300">Somente o primeiro sábado de cada mês</b></p>
+                        </div>
+                    </div>
+                </section>
+
                 <!-- Seção de Links e Ações -->
                 <section class="flex flex-col items-center gap-6">
                     
-                    <!-- Botão para Formulário de Novos Membros (Roxo) -->
                     <a href="https://forms.gle/MrJfbeGFDQz1A6pQ8" target="_blank" rel="noopener noreferrer" class="w-full max-w-sm flex items-center justify-center gap-3 px-6 py-4 text-lg font-semibold text-white bg-purple-700 rounded-xl shadow-md hover:bg-purple-800 focus:outline-none focus:ring-4 focus:ring-purple-300 transition-transform transform hover:scale-105">
-                        📄
-                        <span>Formulário de Novos Membros</span>
+                        📄 <span>Formulário de Novos Membros</span>
                     </a>
 
-                    <!-- Links Adicionais -->
-                    <div class="w-full max-w-sm grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-                        
-                        <!-- Link para WhatsApp (Verde) -->
-                        <a href="https://whatsapp.com/channel/0029VbAdBXi3GJOs8teIaw2U" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 px-4 py-3 font-semibold text-white bg-green-500 rounded-xl shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 transition-all">
-                            💬
-                            <span>Notícias no WhatsApp</span>
-                        </a>
+                    <a href="#" rel="noopener noreferrer" class="w-full max-w-sm flex items-center justify-center gap-3 px-6 py-4 text-lg font-semibold text-gray-900 bg-yellow-500 rounded-xl shadow-md hover:bg-yellow-600 focus:outline-none focus:ring-4 focus:ring-yellow-300 transition-transform transform hover:scale-105">
+                        📄 <span>Formulário dos servos da equipe do Ministério</span>
+                    </a>
 
-                        <!-- Link para YouTube (Vermelho) -->
-                        <a href="https://youtube.com/@metodistacentralcabofrio?si=6ic5uJChhTRrcV4r" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-2 px-4 py-3 font-semibold text-white bg-red-600 rounded-xl shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400 transition-all">
-                            📺
-                            <span>Canal no YouTube</span>
+                    <a href="https://share.google/AbV3WILmCB5Dwlh4o" target="_blank" rel="noopener noreferrer" class="w-full max-w-sm flex items-center justify-center gap-3 px-6 py-4 text-lg font-semibold text-white bg-blue-600 rounded-xl shadow-md hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition-transform transform hover:scale-105">
+                        📍 <span>Ver no Google Maps</span>
+                    </a>
+
+                    <!-- Botão para Abrir o Modal de Células -->
+                    <button id="openCellsModal" class="w-full max-w-sm flex items-center justify-center gap-3 px-6 py-4 text-lg font-semibold text-white bg-teal-600 rounded-xl shadow-md hover:bg-teal-700 focus:outline-none focus:ring-4 focus:ring-teal-300 transition-transform transform hover:scale-105">
+                        👥 <span>Lista de Células</span>
+                    </button>
+
+                    <!-- Links Adicionais -->
+                    <div class="w-full max-w-sm flex flex-wrap justify-center gap-4 mt-4">
+                        <a href="https://whatsapp.com/channel/0029VbAdBXi3GJOs8teIaw2U" target="_blank" rel="noopener noreferrer" class="flex-grow flex items-center justify-center gap-2 px-4 py-3 font-semibold text-white bg-green-500 rounded-xl shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-400 transition-all">
+                            💬 <span>WhatsApp</span>
+                        </a>
+                        <a href="https://youtube.com/@metodistacentralcabofrio?si=6ic5uJChhTRrcV4r" target="_blank" rel="noopener noreferrer" class="flex-grow flex items-center justify-center gap-2 px-4 py-3 font-semibold text-white bg-red-600 rounded-xl shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-400 transition-all">
+                            📺 <span>YouTube</span>
+                        </a>
+                        <a href="https://www.instagram.com/metodistacentralcf/" target="_blank" rel="noopener noreferrer" class="flex-grow flex items-center justify-center gap-2 px-4 py-3 font-semibold text-white bg-pink-600 rounded-xl shadow-sm hover:bg-pink-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-400 transition-all">
+                            📸 <span>Instagram</span>
                         </a>
                     </div>
                 </section>
             </div>
-
         </div>
-
         <!-- Rodapé -->
         <footer class="mt-8 text-center">
             <p class="text-sm text-gray-500">&copy; <span id="year"></span> Igreja Metodista Central de Cabo Frio. Todos os direitos reservados.</p>
         </footer>
     </div>
 
+    <!-- Modal das Células -->
+    <div id="cellsModal" class="modal-overlay">
+        <div class="modal-content text-left">
+            <span id="closeCellsModal" class="modal-close">&times;</span>
+            <h2 class="text-2xl font-bold text-yellow-500 mb-6 text-center">Lista de Células</h2>
+            <div class="space-y-5">
+                <!-- Células são inseridas aqui -->
+                <div class="p-4 bg-gray-900 rounded-lg">
+                    <h3 class="font-bold text-lg text-yellow-400">PÉROLAS DE DEUS (Família)</h3>
+                    <p><b>Líder:</b> Alisson Carlos & Vadna</p>
+                    <p><b>Dia e Hora:</b> Terça-feira às 19:30</p>
+                    <p><b>Endereço:</b> Rua Primeiro de Março, 420 - Parque Central</p>
+                </div>
+                <div class="p-4 bg-gray-900 rounded-lg">
+                    <h3 class="font-bold text-lg text-yellow-400">LEÃO DE JUDÁ (Família)</h3>
+                    <p><b>Líder:</b> Haroldo & Maria, Márcia & Carlos</p>
+                    <p><b>Dia e Hora:</b> Terça-feira às 20:00</p>
+                    <p><b>Endereço:</b> Rua Zumira Mendes, 35</p>
+                </div>
+                <div class="p-4 bg-gray-900 rounded-lg">
+                    <h3 class="font-bold text-lg text-yellow-400">ALIANÇADOS (Família)</h3>
+                    <p><b>Líder:</b> Pablo & Tati</p>
+                    <p><b>Dia e Hora:</b> Terça-feira às 20:00</p>
+                    <p><b>Endereço:</b> Na Igreja</p>
+                </div>
+                 <div class="p-4 bg-gray-900 rounded-lg">
+                    <h3 class="font-bold text-lg text-yellow-400">HERDEIRAS (Mulheres)</h3>
+                    <p><b>Líder:</b> Priscila Faria & Priscila Fernandes</p>
+                    <p><b>Dia e Hora:</b> Quarta-feira às 20:00</p>
+                    <p><b>Endereço:</b> Rua Zulmira Mendes, 28, Apto 303 - Braga</p>
+                </div>
+                <div class="p-4 bg-gray-900 rounded-lg">
+                    <h3 class="font-bold text-lg text-yellow-400">ATOS 29 (Adultos)</h3>
+                    <p><b>Líder:</b> Zé Renato & Zuleica, Francisco & Gilmara</p>
+                    <p><b>Dia e Hora:</b> Terça-feira (Horário flexível)</p>
+                    <p><b>Endereço:</b> Na Igreja</p>
+                </div>
+                 <div class="p-4 bg-gray-900 rounded-lg">
+                    <h3 class="font-bold text-lg text-yellow-400">PEQUENOS SEMEADORES (Crianças)</h3>
+                    <p><b>Líder:</b> Rachel & Lorena Lima</p>
+                    <p><b>Dia e Hora:</b> Terça-feira às 20:00</p>
+                    <p><b>Endereço:</b> Na Igreja</p>
+                </div>
+                <div class="p-4 bg-gray-900 rounded-lg">
+                    <h3 class="font-bold text-lg text-yellow-400">BEM-CASADOS (Jovens Casados)</h3>
+                    <p><b>Líder:</b> Casé & Bia, Vitor & Ranny, Leon & Patrícia</p>
+                    <p><b>Dia e Hora:</b> Quarta-feira às 20:00</p>
+                    <p><b>Endereço:</b> Na Igreja</p>
+                </div>
+                <div class="p-4 bg-gray-900 rounded-lg">
+                    <h3 class="font-bold text-lg text-yellow-400">HOMENS COMPROMETIDOS COM DEUS</h3>
+                    <p><b>Líder:</b> Cidimar da Costa & Júlio Cesar</p>
+                    <p><b>Dia e Hora:</b> Quarta-feira às 20:00</p>
+                    <p><b>Endereço:</b> Rua das Orquídeas, Lt 07, Cs 01, Qd 14</p>
+                </div>
+                <div class="p-4 bg-gray-900 rounded-lg">
+                    <h3 class="font-bold text-lg text-yellow-400">VENHA O TEU REINO (Mulheres)</h3>
+                    <p><b>Líder:</b> Andréa Beatryce & Priscila Lima</p>
+                    <p><b>Dia e Hora:</b> Quarta-feira às 20:00</p>
+                    <p><b>Endereço:</b> Rua dos Cravos, 01, Bl 1, Apto 205 - Algodoal</p>
+                </div>
+                 <div class="p-4 bg-gray-900 rounded-lg">
+                    <h3 class="font-bold text-lg text-yellow-400">HUIOS (Juvenis 15-18)</h3>
+                    <p><b>Líder:</b> Jair & Edy, Diego & Gabi</p>
+                    <p><b>Dia e Hora:</b> Terça-feira às 20:00</p>
+                    <p><b>Endereço:</b> Na Igreja</p>
+                </div>
+                <div class="p-4 bg-gray-900 rounded-lg">
+                    <h3 class="font-bold text-lg text-yellow-400">TECNON (Juvenis 12-14)</h3>
+                    <p><b>Líder:</b> Jair & Edy, Diego & Gabi</p>
+                    <p><b>Dia e Hora:</b> Terça-feira às 20:00</p>
+                    <p><b>Endereço:</b> Na Igreja</p>
+                </div>
+                 <div class="p-4 bg-gray-900 rounded-lg">
+                    <h3 class="font-bold text-lg text-yellow-400">HOREBE (Online)</h3>
+                    <p><b>Líder:</b> Pastora Silvia & Ana Veronica</p>
+                    <p><b>Dia e Hora:</b> Terça-feira às 20:00</p>
+                    <p><b>Onde:</b> Pelo YouTube</p>
+                </div>
+                 <div class="p-4 bg-gray-900 rounded-lg">
+                    <h3 class="font-bold text-lg text-yellow-400">NA MESA (Jovens 18-23)</h3>
+                    <p><b>Líder:</b> Filipe & Laura Buçard</p>
+                    <p><b>Dia e Hora:</b> Sexta-feira às 19:30</p>
+                    <p><b>Endereço:</b> Na Igreja (Auditório em frente à cozinha)</p>
+                </div>
+                 <div class="p-4 bg-gray-900 rounded-lg">
+                    <h3 class="font-bold text-lg text-yellow-400">CÉLULA DOS JOVENS</h3>
+                    <p><b>Líder:</b> Lucas Martins & Lucas Quintanilha</p>
+                    <p><b>Dia e Hora:</b> Terça-feira às 20:00</p>
+                    <p><b>Endereço:</b> Na Igreja (Sala dos Jovens)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Atualiza o ano no rodapé automaticamente
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Lógica do Modal
+        const openModalBtn = document.getElementById('openCellsModal');
+        const closeModalBtn = document.getElementById('closeCellsModal');
+        const modal = document.getElementById('cellsModal');
+
+        openModalBtn.addEventListener('click', () => {
+            modal.classList.add('show');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.remove('show');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('show');
+            }
+        });
     </script>
 </body>
 </html>
